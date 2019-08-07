@@ -6,6 +6,7 @@ import Menu from "../Menu/Menu";
 const Home = props => {
     const [values, setValues] = useState({
         playing: false,
+        drawingMode: false,
         bpm: 90
     });
 
@@ -17,15 +18,21 @@ const Home = props => {
         setValues({ ...values, playing: !values.playing });
     };
 
+    const toggleDrawingMode = () => {
+        setValues({ ...values, drawingMode: !values.drawingMode });
+    };
+
     return (
         <div>
             <Menu
+                drawingMode={values.drawingMode}
+                toggleDrawingMode={toggleDrawingMode}
                 playing={values.playing}
                 bpm={values.bpm}
                 setBpm={setBpm}
                 togglePlayStop={togglePlayStop}
             />
-            <CanvasGrid />
+            <CanvasGrid drawingMode={values.drawingMode} />
         </div>
     );
 };

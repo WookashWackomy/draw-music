@@ -6,12 +6,19 @@ import Cell from "../Cell/Cell";
 const numRows = 10;
 const numCols = 20;
 
-const CanvasGrid = props => {
+const CanvasGrid = ({ drawingMode }) => {
     const createCells = () => {
         const cells = [];
         for (let row = 1; row <= numRows; row++) {
             for (let col = 1; col <= numCols; col++) {
-                cells.push(<Cell row={row} col={col} />);
+                cells.push(
+                    <Cell
+                        row={row}
+                        col={col}
+                        drawingMode={drawingMode}
+                        key={row + "," + col}
+                    />
+                );
             }
         }
         return cells;

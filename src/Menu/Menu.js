@@ -5,7 +5,14 @@ import Play from "../assets/images/play.png";
 import Stop from "../assets/images/stop.png";
 import Pause from "../assets/images/pause.png";
 
-const Menu = ({ playing, togglePlayStop, bpm, setBpm }) => {
+const Menu = ({
+    playing,
+    togglePlayStop,
+    bpm,
+    setBpm,
+    drawingMode,
+    toggleDrawingMode
+}) => {
     const setBpmFromEvent = event => {
         const newBpm = event.target.value;
         setBpm(newBpm);
@@ -13,10 +20,17 @@ const Menu = ({ playing, togglePlayStop, bpm, setBpm }) => {
 
     return (
         <div id="menu">
-            <div id="playButton">
+            <div className={"button"} id="playButton">
                 <img
                     src={playing ? Stop : Play}
                     onClick={togglePlayStop}
+                    alt="play button"
+                />
+            </div>
+            <div className={"button"} id="drawingModeButton">
+                <img
+                    src={drawingMode ? Draw : Move}
+                    onClick={toggleDrawingMode}
                     alt="play button"
                 />
             </div>
