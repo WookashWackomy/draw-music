@@ -1,0 +1,32 @@
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 250px;
+    height: 20px;
+    background: #999999;
+    outline: none;
+    margin: auto;
+  }
+  .slider::-webkit-slider-thumb{
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 20px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    background: rgb(87, 53, 10); /* Green background */
+    border-radius: 3px;
+    cursor: pointer; /* Cursor on hover */
+}
+#playButton {
+    border: 1px solid white;
+    background-color: rgb(194, 189, 189);
+  }
+
+#menu {
+    background-color: #222;
+    width: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
