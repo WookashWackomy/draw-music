@@ -3,19 +3,30 @@ import PropTypes from "prop-types";
 import "./Note.scss";
 import classNames from "classnames";
 
-const Note = ({ row, leftEnd, rightEnd, drawingMode }) => {
+const Note = ({ row, leftEnd, rightEnd, drawingMode, isMouseButtonDown }) => {
     const [values, setValues] = useState({
         isOn: false
     });
 
-    const handleOnClick = () => {
+    const handleOnClick = e => {
         setValues({ isOn: !values.isOn });
     };
 
-    const handleOnMouseEnter = () => {
+    const handleOnMouseOver = e => {
+        e.preventDefault();
+        console.log(drawingMode);
         if (drawingMode) {
-            setValues({ isOn: !values.isOn });
+            if (e.buttons === 1) {
+                setValues({ isOn: true });
+            } else if (e.buttons === 2) {
+                setValues({ isOn: false });
+            }
         }
+    };
+
+    const handleContextMenu = e => {
+        e.preventDefault();
+        return false;
     };
 
     const styles = {
@@ -28,7 +39,8 @@ const Note = ({ row, leftEnd, rightEnd, drawingMode }) => {
             className={classNames("note", noteOn)}
             style={styles}
             onClick={handleOnClick}
-            onMouseEnter={handleOnMouseEnter}
+            onMouseOver={handleOnMouseOver}
+            onContextMenu={handleContextMenu}
         />
     );
 };

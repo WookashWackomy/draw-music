@@ -16,17 +16,23 @@
     border-radius: 3px;
     cursor: pointer; /* Cursor on hover */
 }
-#playButton {
+.button {
+    margin-left: 10px;
+    margin-right: 10px;
     border: 1px solid white;
     background-color: rgb(194, 189, 189);
   }
 
 #menu {
+    padding: 5px;
     background-color: #222;
-    width: 100%;
     color: #fff;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
+    justify-content: flex-start;
   }
+
+.bpm {
+    margin-left:auto;
+}
