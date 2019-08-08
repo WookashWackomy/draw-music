@@ -11,15 +11,10 @@ const Menu = ({
     playing,
     togglePlayStop,
     bpm,
-    setBpm,
+    setBpmFromEvent,
     drawingMode,
     toggleDrawingMode
 }) => {
-    const setBpmFromEvent = event => {
-        const newBpm = event.target.value;
-        setBpm(newBpm);
-    };
-
     return (
         <div id="menu">
             <div className={"button"} id="playButton">

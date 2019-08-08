@@ -1,49 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import "./CanvasGrid.scss";
 import Cell from "../Cell/Cell";
 
-const numRows = 22;
-const numCols = 20;
-
-const CanvasGrid = ({ drawingMode }) => {
-    const [values, setValues] = useState({
-        isMouseButtonDown: false
-    });
-
-    const toggleMouseButtonDown = () => {
-        console.log("mousedown");
-        setValues({
-            isMouseButtonDown: !values.isMouseButtonDown
-        });
-    };
-
-    const createCells = () => {
+const CanvasGrid = ({ numRows, numCols }) => {
+    const createCells = useMemo(() => {
+        console.log("rerendering");
         const cells = [];
         for (let row = 1; row <= numRows; row++) {
             for (let col = 1; col <= numCols; col++) {
-                cells.push(
-                    <Cell
-                        row={row}
-                        col={col}
-                        isMouseButtonDown={values.isMouseButtonDown}
-                        drawingMode={drawingMode}
-                        key={row + "," + col}
-                    />
-                );
+                cells.push(<Cell row={row} col={col} key={`${row}0${col}`} />);
             }
         }
         return cells;
-    };
+    }, [numRows, numCols]);
 
     return (
-        <div
-            className="grid-container"
-            id="grid"
-            onMouseDown={toggleMouseButtonDown}
-            onMouseUp={toggleMouseButtonDown}
-        >
-            {createCells()}
+        <div className="grid-container" id="grid">
+            {createCells}
         </div>
     );
 };

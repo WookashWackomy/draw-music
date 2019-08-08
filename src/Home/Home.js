@@ -4,35 +4,41 @@ import CanvasGrid from "../CanvasGrid/CanvasGrid";
 import Menu from "../Menu/Menu";
 
 const Home = props => {
-    const [values, setValues] = useState({
-        playing: false,
-        drawingMode: false,
-        bpm: 90
-    });
+    const [playing, setPlaying] = useState(false);
+    const [drawingMode, setDrawingMode] = useState(false);
+    const [bpm, setBpm] = useState(90);
 
-    const setBpm = value => {
-        setValues({ ...values, bpm: value });
+    const setBpmFromEvent = event => {
+        event.preventDefault();
+        const newBpm = event.target.value;
+        setBpm(newBpm);
     };
 
     const togglePlayStop = () => {
-        setValues({ ...values, playing: !values.playing });
+        setPlaying(!playing);
     };
 
     const toggleDrawingMode = () => {
-        setValues({ ...values, drawingMode: !values.drawingMode });
+        setDrawingMode(!drawingMode);
     };
 
+    const numRows = 22;
+    const numCols = 20;
     return (
         <div>
             <Menu
-                drawingMode={values.drawingMode}
+                drawingMode={drawingMode}
                 toggleDrawingMode={toggleDrawingMode}
-                playing={values.playing}
-                bpm={values.bpm}
-                setBpm={setBpm}
+                playing={playing}
+                bpm={bpm}
+                setBpmFromEvent={setBpmFromEvent}
                 togglePlayStop={togglePlayStop}
             />
-            <CanvasGrid drawingMode={values.drawingMode} />
+            <CanvasGrid
+                drawingMode={drawingMode}
+                numRows={numRows}
+                numCols={numCols}
+            />
         </div>
     );
 };

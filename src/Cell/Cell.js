@@ -2,8 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Cell.scss";
 import Note from "../Note/Note";
+import { getPitch, getColor } from "../utils/notes";
 
-const Cell = ({ row, col, drawingMode, isMouseButtonDown }) => {
+const Cell = ({ row, col }) => {
+    const pitch = getPitch(row);
+    const color = getColor(row);
     return (
         <div
             className="cell-container"
@@ -11,10 +14,10 @@ const Cell = ({ row, col, drawingMode, isMouseButtonDown }) => {
         >
             <Note
                 row={row}
+                pitch={pitch}
+                color={color}
                 leftEnd={col}
                 rightEnd={col}
-                isMouseButtonDow={isMouseButtonDown}
-                drawingMode={drawingMode}
             />
         </div>
     );
